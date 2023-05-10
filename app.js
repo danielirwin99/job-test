@@ -28,7 +28,7 @@ app.use(express.json());
 // Extra Packages
 // ----------------
 // Needed for if your using a proxy for rate limiter
-app.set("trust proxy", 1)
+app.set("trust proxy", 1);
 // Limits the amount of requests to stop overloading
 app.use(
   rateLimiter({
@@ -40,6 +40,9 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
+app.get("/", (req, res) => {
+  res.send("Jobs API");
+});
 // routes
 app.use("/api/v1/auth", authRouter);
 // authenticateUser protects the server from Users changing things
